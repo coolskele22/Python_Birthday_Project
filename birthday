@@ -1,0 +1,57 @@
+from datetime import datetime
+
+now = datetime.now()
+year = now.year
+month = now.month
+day = now.day
+months = ["january", "febuary", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
+nummonths = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+
+name = raw_input("Type your name: ")
+birthmonth = raw_input("Type in your birth month: ").lower()
+birthday = int(raw_input("Type in your birth day: "))
+
+
+for i in range(12):
+	if type(birthmonth) == str:
+		if birthmonth == months[i]:
+			birthmonth = i + 1
+		elif birthmonth == nummonths[i]:
+			birthmonth = i + 1
+
+if birthmonth == month:
+	if birthday < day:
+		monthleft = (12 - month) + birthmonth
+		dayleft = day - birthday
+	elif birthday > day:
+		monthleft = 0
+		dayleft = birthday - day
+	elif birthday == day:
+		monthleft = 0
+		dayleft = 0
+		print "HAPPY BIRTHDAY %s" % (name)
+
+elif birthmonth > month:
+	if birthday > day:
+		monthleft = (12 + month) - birthmonth
+		dayleft = birthday - day
+	elif birthday <= day:
+		monthleft = (12 - month) + birthmonth
+		dayleft = day - birthday
+
+elif birthmonth < month:
+	if birthday > day:
+		monthleft = (12 - month) + birthmonth
+		dayleft = birthday - day
+	elif birthday <= day:
+		monthleft = (12 - month) + birthmonth
+		dayleft = day - birthday
+
+elif month == 12:
+	if birthday > day:
+		monthleft = birthmonth
+		dayleft = birthday - day
+	elif birthday <= day:
+		monthleft = birthmonth
+		dayleft = day - birthday
+print "There are %s months and %s days left until your birthday" % (monthleft, dayleft)
